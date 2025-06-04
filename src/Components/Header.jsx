@@ -2,12 +2,49 @@ import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { FaPhone } from "react-icons/fa";
 import { GoChevronDown } from "react-icons/go";
+import mylogo from "../assets/artregalialogo.jpg";
 
 const Header = () => {
   const [ishover,setIshover]=useState(false);
   const [open ,setOpen]=useState(false);
   const isopen=()=>setOpen(!open);
+
+  const [chat,setChat]=useState(false);
+  const ischat=()=>setChat(!chat);
+
+    const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    phone: '',
+    question: '',
+  });
+
+    const handleChange = (e) => {
+    setFormData((prev) => ({
+      ...prev,
+      [e.target.name]: e.target.value,
+    }));
+  };
+
+  const sendToWhatsApp = () => {
+    const { name, email, phone, question } = formData;
+
+    const message = `Hi, I'm ${name}%0AMy email: ${email}%0APhone: ${phone}%0AQuestion: ${question}`;
+    const whatsappNumber = '917645066610'; // Replace with your number in international format
+    const url = `https://wa.me/${whatsappNumber}?text=${message}`;
+
+    window.open(url, '_Self');
+    // setFormData({
+    //   name:"",
+    //   email:"",
+    //   phone:"",
+    //   question:""
+    // });
+    ischat();
+  };
+
   return (
+    <>
     <div className=" w-full h-[85px] border border-b-2 border-black backdrop-blur-3xl top-0 shadow-lg rounded-b-md  sticky md:bg-slate-200 z-50">
       <div className="flex gap-3 justify-around items-center text-center p-3 md:p-0 ">
         <motion.div
@@ -22,7 +59,7 @@ const Header = () => {
           }}
           className="  flex gap-2 items-center px-3 rounded  text-2xl"
         >
-         <img src="https://www.shutterstock.com/image-vector/eagle-logo-fierce-vibrant-soaring-260nw-2494369867.jpg" className="w-16 shadow-md object-cover rounded-full" alt="mylogo" /> <h2 className="font-semibold">Art<span className="font-bold text-yellow-400">R</span>egalia</h2>
+         <img src={mylogo} className="w-16 shadow-md object-cover rounded-lg" alt="mylogo" /> <h2 className="font-semibold">Art<span className="font-bold text-yellow-400">R</span>egalia</h2>
         </motion.div>
 
         <div className="h-full flex flex-col gap-4">
@@ -47,7 +84,7 @@ const Header = () => {
             </a>
           </motion.div>
 
-          <div className="hidden md:block">
+          <div className="hidden lg:block">
             <nav>
               <ul className="flex gap-4 font-bold cursor-pointer text-gray-600 transition-all">
                 <motion.li
@@ -87,10 +124,20 @@ const Header = () => {
           </div>
         </div>
 
+           {/* get in touch */}
+          <div className="hidden md:block">
+            <motion.button 
+            onClick={()=>ischat()}
+            whileTap={{scale:1.3}}
+            className="p-3 bg-gradient-to-br from-violet-400 to-slate-300 shadow-md rounded-md cursor-pointer text-white shadow-black">Chat with me!</motion.button>
+          </div>
+
+
+
 
 
         {/* mobile device */}
-        <div className="md:hidden">
+        <div className="lg:hidden">
           <button onClick={()=>isopen()} className="p-3 bg-gradient-to-r from-violet-300 to-slate-300 shadow-2xl text-white rounded-lg text-2xl w-24">{open ? 'X':'|||'}</button>
         </div>
       </div>
@@ -103,20 +150,69 @@ const Header = () => {
             duration:0.5,
             delay:0.5
           }}
-          className="w-full p-2 bg-white overflow-hidden transition-all">
+          className="w-full p-2 bg-slate-600 overflow-hidden transition-all">
             <nav>
               <ul>
-                <li className="cursor-pointer bg-violet-500 focus:translate-x-3 p-2 text-white font-semibold">Home</li>
-                <li className="cursor-pointer bg-violet-500 focus:translate-x-3 p-2 text-white font-semibold">Wallpaper</li>
-                <li className="cursor-pointer bg-violet-500 focus:translate-x-3 p-2 text-white font-semibold">Louvers</li>
-                <li className="cursor-pointer bg-violet-500 focus:translate-x-3 p-2 text-white font-semibold">Panel</li>
-                <li className="cursor-pointer bg-violet-500 focus:translate-x-3 p-2 text-white font-semibold">About us</li>
-                <li className="cursor-pointer bg-violet-500 focus:translate-x-3 p-2 text-white font-semibold">Contact us</li>
+                <li className="cursor-pointer bg-slate-500 rounded px-4  my-1 focus:translate-x-3 p-2 text-white font-semibold">Home</li>
+                <li className="cursor-pointer bg-slate-500 rounded px-4  my-1 focus:translate-x-3 p-2 text-white font-semibold">Wallpaper</li>
+                <li className="cursor-pointer bg-slate-500 rounded px-4  my-1 focus:translate-x-3 p-2 text-white font-semibold">Louvers</li>
+                <li className="cursor-pointer bg-slate-500 rounded px-4  my-1 focus:translate-x-3 p-2 text-white font-semibold">Panel</li>
+                <li className="cursor-pointer bg-slate-500 rounded px-4  my-1 focus:translate-x-3 p-2 text-white font-semibold">About us</li>
+                <li className="cursor-pointer bg-slate-500 rounded px-4  my-1 focus:translate-x-3 p-2 text-white font-semibold">Contact us</li>
               </ul>
+
+                <motion.button 
+                onClick={()=>{ischat() ,isopen()}}
+            whileTap={{scale:0.8}}
+            className="p-3 w-full my-1 bg-gradient-to-br from-violet-400 to-slate-300 shadow-md rounded-md cursor-pointer text-black font-bold shadow-black">Chat with me!</motion.button>
+
             </nav>
           </motion.section>
 
+          {/* chat with me */}
+          <div className={`fixed top-0 w-full h-[100vh] bg-slate-500 ${chat ? "flex":"hidden"}`}>
+          
+          <div className="max-w-md h-[70vh]  my-[60px] mx-auto bg-gradient-to-br p-4 from-violet-400 to-slate-300 rounded-xl shadow-md">
+            <p className="w-full text-right"><span onClick={()=>ischat()} className="p-4 cursor-pointer bg-slate-500 rounded-full text-white">X</span></p>
+      <h2 className="text-xl font-semibold mb-4 text-gray-300">Ask Your Question</h2>
+
+      <input
+        type="text"
+        name="name"
+        placeholder="Your Name"
+        onChange={handleChange}
+        className="w-full mb-2 px-3 py-2 border rounded bg-white outline-none"
+      />
+      <input
+        type="email"
+        name="email"
+        placeholder="Your Email"
+        onChange={handleChange}
+        className="w-full mb-2 px-3 py-2 border rounded bg-white outline-none"
+      />
+      <input
+        type="text"
+        name="phone"
+        placeholder="Your Phone"
+        onChange={handleChange}
+        className="w-full mb-2 px-3 py-2 border rounded bg-white outline-none"
+      />
+      <textarea
+        name="question"
+        placeholder="Your Question"
+        onChange={handleChange}
+        className="w-full mb-4 px-3 py-2 border rounded bg-white"
+      />
+      <button
+        onClick={sendToWhatsApp}
+        className="bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded transition"
+      >
+        Send via WhatsApp
+      </button>
     </div>
+          </div>
+    </div>
+    </>
   );
 };
 
