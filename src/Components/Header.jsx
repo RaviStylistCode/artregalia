@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import { FaPhone } from "react-icons/fa";
 import { GoChevronDown } from "react-icons/go";
 import mylogo from "../assets/artregalialogo.jpg";
+import { Link } from "react-router-dom";
 
 const Header = () => {
   const [ishover,setIshover]=useState(false);
@@ -45,7 +46,7 @@ const Header = () => {
 
   return (
     <>
-    <div className=" w-full h-[85px] border border-b-2 border-black backdrop-blur-3xl top-0 shadow-lg rounded-b-md  sticky md:bg-slate-200 z-50">
+    <div className=" w-full h-[85px] border border-b-2 border-black backdrop-blur-xl top-0 shadow-lg rounded-b-md  sticky md:bg-slate-200 z-50">
       <div className="flex gap-3 justify-around items-center text-center p-3 md:p-0 ">
         <motion.div
           initial={{ opacity: 0, x: -50 }}
@@ -59,7 +60,7 @@ const Header = () => {
           }}
           className="  flex gap-2 items-center px-3 rounded  text-2xl"
         >
-         <img src={mylogo} className="w-16 shadow-md object-cover rounded-lg" alt="mylogo" /> <h2 className="font-semibold">Art<span className="font-bold text-yellow-400">R</span>egalia</h2>
+         <img src={mylogo} className="w-16 shadow-md object-cover rounded-lg" alt="mylogo" /> <h2 className="font-bold text-violet-500">Art<span className="font-bold text-yellow-400">R</span>egalia</h2>
         </motion.div>
 
         <div className="h-full flex flex-col gap-4">
@@ -98,7 +99,7 @@ const Header = () => {
                     duration: 1,
                   }}
                 >
-                  Home
+                <Link to={'/'}>Home</Link>
                 </motion.li>
                 <li>Wallpaper</li>
                 <motion.li 
@@ -111,14 +112,14 @@ const Header = () => {
                 animate={{opacity:ishover?1:0,height: ishover?'auto':0}}
                 transition={{delay:0.5 ,duration:0.2}}
                   className={`w-[20vw] bg-white absolute top-21 p-4 overflow-hidden transition-all `}>
-                    <li>Exterier Louvers</li>
-                    <li>Interier Louvers</li>
-                    <li>Charcol Panel</li>
+                    <p>Exterier Louvers</p>
+                    <p>Interier Louvers</p>
+                    <p>Charcol Panel</p>
                   </motion.div>
                 </motion.li>
                 <li>Artificial Grass</li>
-                <li>About us</li>
-                <li>Contact us</li>
+                <li ><Link to={'/about'} >About us</Link></li>
+                <li  ><Link to={'/contact-us'}>Contact us</Link></li>
               </ul>
             </nav>
           </div>
@@ -129,7 +130,7 @@ const Header = () => {
             <motion.button 
             onClick={()=>ischat()}
             whileTap={{scale:1.3}}
-            className="p-3 bg-gradient-to-br from-violet-400 to-slate-300 shadow-md rounded-md cursor-pointer text-white shadow-black">Chat with me!</motion.button>
+            className="p-3 bg-gradient-to-br from-violet-400 to-slate-300 shadow-md rounded-md cursor-pointer text-white shadow-black">Send via whatsapp</motion.button>
           </div>
 
 
@@ -138,7 +139,7 @@ const Header = () => {
 
         {/* mobile device */}
         <div className="lg:hidden">
-          <button onClick={()=>isopen()} className="p-3 bg-gradient-to-r from-violet-300 to-slate-300 shadow-2xl text-white rounded-lg text-2xl w-24">{open ? 'X':'|||'}</button>
+          <button onClick={()=>isopen()} className="px-5 py-3  bg-gradient-to-r from-violet-300 to-slate-300 shadow-2xl text-white rounded-lg text-2xl ">{open ? 'X':'|||'}</button>
         </div>
       </div>
 
@@ -153,18 +154,18 @@ const Header = () => {
           className="w-full p-2 bg-slate-600 overflow-hidden transition-all">
             <nav>
               <ul>
-                <li className="cursor-pointer bg-slate-500 rounded px-4  my-1 focus:translate-x-3 p-2 text-white font-semibold">Home</li>
+                <li className="cursor-pointer bg-slate-500 rounded px-4  my-1 focus:translate-x-3 p-2 text-white font-semibold"><Link to={'/'} onClick={isopen}>Home</Link></li>
                 <li className="cursor-pointer bg-slate-500 rounded px-4  my-1 focus:translate-x-3 p-2 text-white font-semibold">Wallpaper</li>
                 <li className="cursor-pointer bg-slate-500 rounded px-4  my-1 focus:translate-x-3 p-2 text-white font-semibold">Louvers</li>
                 <li className="cursor-pointer bg-slate-500 rounded px-4  my-1 focus:translate-x-3 p-2 text-white font-semibold">Panel</li>
-                <li className="cursor-pointer bg-slate-500 rounded px-4  my-1 focus:translate-x-3 p-2 text-white font-semibold">About us</li>
-                <li className="cursor-pointer bg-slate-500 rounded px-4  my-1 focus:translate-x-3 p-2 text-white font-semibold">Contact us</li>
+                <li className="cursor-pointer bg-slate-500 rounded px-4  my-1 focus:translate-x-3 p-2 text-white font-semibold"><Link to={'/about'} onClick={isopen}>About us</Link></li>
+                <li className="cursor-pointer bg-slate-500 rounded px-4  my-1 focus:translate-x-3 p-2 text-white font-semibold"><Link to={'/contact-us'} onClick={isopen}>Contact us</Link></li>
               </ul>
 
-                <motion.button 
-                onClick={()=>{ischat() ,isopen()}}
+            <motion.button 
+            onClick={()=>{ischat() ,isopen()}}
             whileTap={{scale:0.8}}
-            className="p-3 w-full my-1 bg-gradient-to-br from-violet-400 to-slate-300 shadow-md rounded-md cursor-pointer text-black font-bold shadow-black">Chat with me!</motion.button>
+            className="p-3 w-full my-1 bg-gradient-to-br from-violet-400 to-slate-300 shadow-md rounded-md cursor-pointer text-black font-bold shadow-black"><span>Send via whatsapp</span></motion.button>
 
             </nav>
           </motion.section>
@@ -172,7 +173,7 @@ const Header = () => {
           {/* chat with me */}
           <div className={`fixed top-0 w-full h-[100vh] bg-slate-500 ${chat ? "flex":"hidden"}`}>
           
-          <div className="max-w-md h-[70vh]  my-[60px] mx-auto bg-gradient-to-br p-4 from-violet-400 to-slate-300 rounded-xl shadow-md">
+          <div className="max-w-md h-fit  my-[60px] mx-auto bg-gradient-to-br p-4 from-violet-400 to-slate-300 rounded-xl shadow-md">
             <p className="w-full text-right"><span onClick={()=>ischat()} className="p-4 cursor-pointer bg-slate-500 rounded-full text-white">X</span></p>
       <h2 className="text-xl font-semibold mb-4 text-gray-300">Ask Your Question</h2>
 
