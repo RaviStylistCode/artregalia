@@ -136,7 +136,7 @@ const steps = [
                 <p className="text-5xl font-extrabold text-indigo-600">
                   <CountUp end={item.count } duration={2} suffix="+" />
                 </p>
-                <h2 className="text-2xl font-semibold font-sans text-gray-400 mb-3">
+                <h2 className="text-xl lg:text-2xl font-semibold font-sans text-gray-400 mb-3">
                   {item.title}
                 </h2>
               </div>
@@ -231,7 +231,7 @@ const steps = [
 
 
         {/* services */}
-         <div className="bg-gradient-to-br from-purple-50 to-blue-100 py-16 px-6 min-h-screen flex flex-col items-center">
+         <div className="bg-gradient-to-br from-purple-50 to-blue-100 py-16 px-6  flex flex-col items-center">
       <h1 className="text-4xl font-bold text-gray-800 mb-12 text-center">Our Services</h1>
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-8 w-full max-w-6xl">
