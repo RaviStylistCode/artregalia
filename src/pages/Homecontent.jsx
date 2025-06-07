@@ -6,6 +6,7 @@ import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
 import { motion } from 'framer-motion';
 import { FaLightbulb, FaHandsHelping, FaMapMarkedAlt, FaHome, FaPalette } from 'react-icons/fa';
+import { Link } from "react-router-dom";
 
 const Homecontent = () => {
 
@@ -162,11 +163,14 @@ const steps = [
             elegant wood-like appearance, they add a modern touch to your architectural design while ensuring long-lasting
             performance.
           </p>
+
+          <Link to={'/louvers'}>
           <motion.button 
           whileTap={{scale:2}}
           className="bg-indigo-600 cursor-pointer text-white px-6 py-3 rounded-full font-medium hover:bg-indigo-700 transition duration-300">
             Explore More
           </motion.button>
+          </Link>
         </motion.div>
 
         {/* Right Card - Image */}
@@ -220,11 +224,13 @@ const steps = [
             modern look or a soft, classic feel, wallpapers offer endless design possibilities. They're easy to install,
             clean, and replace — making them a perfect choice for transforming interiors quickly and effectively.
           </p>
+          <Link to={'/wallpaper'}>
           <motion.button 
           whileTap={{scale:2}}
           className="bg-indigo-600 cursor-pointer text-white px-6 py-3 rounded-full font-medium hover:bg-indigo-700 transition duration-300">
             Explore More
           </motion.button>
+          </Link>
         </motion.div>
       </div>
     </div>
@@ -243,16 +249,22 @@ const steps = [
             <div className="mb-4 flex justify-center">{service.icon}</div>
             <h3 className="text-xl font-semibold text-gray-700 mb-2">{service.title}</h3>
             <p className="text-gray-600 mb-4">{service.description}</p>
+
+            <Link to={'/services'}> 
             <button className="mt-auto bg-indigo-500 text-white px-4 py-2 rounded-full hover:bg-indigo-600 transition">
               Learn More
             </button>
+            </Link>
+
           </div>
         ))}
       </div>
 
+        <Link to={'/services'}>    
       <button className="mt-12 bg-gradient-to-r from-indigo-500 to-purple-500 text-white px-6 py-3 rounded-full text-lg font-semibold shadow-md hover:scale-105 transition">
         Explore All Services
       </button>
+        </Link>
     </div>
 
     {/* design process */}

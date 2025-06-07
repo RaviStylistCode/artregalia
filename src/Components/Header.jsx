@@ -8,7 +8,9 @@ import { Link } from "react-router-dom";
 const Header = () => {
   const [ishover,setIshover]=useState(false);
   const [open ,setOpen]=useState(false);
+  const [wall,setWall]=useState(false);
   const isopen=()=>setOpen(!open);
+ 
 
   const [chat,setChat]=useState(false);
   const ischat=()=>setChat(!chat);
@@ -48,6 +50,8 @@ const Header = () => {
     <>
     <div className=" w-full h-[85px] border border-b-2 border-black backdrop-blur-xl top-0 shadow-lg rounded-b-md  sticky md:bg-slate-200 z-50">
       <div className="flex gap-3 justify-around items-center text-center p-3 md:p-0 ">
+      <Link to={'/'}>
+
         <motion.div
           initial={{ opacity: 0, x: -50 }}
           animate={{ opacity: 1, x: 0 }}
@@ -62,6 +66,7 @@ const Header = () => {
         >
          <img src={mylogo} className="w-16 shadow-md object-cover rounded-lg" alt="mylogo" /> <h2 className="font-bold text-violet-500">Art<span className="font-bold text-yellow-400">R</span>egalia</h2>
         </motion.div>
+      </Link>
 
         <div className="h-full flex flex-col gap-4">
           <motion.div
@@ -76,7 +81,7 @@ const Header = () => {
             }}
             className="hidden md:flex gap-5 justify-end p-2 font-bold top-0  "
           >
-            <h3 className="text-gray-500 cursor-pointer">
+            <h3 className="hidden lg:block text-gray-500 cursor-pointer">
               Book Your Appointment Today
             </h3>
             <a href="tel:+917645066610">
@@ -101,12 +106,30 @@ const Header = () => {
                 >
                 <Link to={'/'}>Home</Link>
                 </motion.li>
-                <li>Wallpaper</li>
+
+                <li 
+                onMouseOver={()=>setWall(true)}
+                onMouseOut={()=>setWall(false)}
+                className="flex items-center gap-1 "><Link to={'/wallpaper'}>Wallpaper</Link>  <GoChevronDown size={'22px'} />
+                  <motion.div 
+                  initial={{opacity:0,height:0}}
+                  animate={{opacity: wall ? 1:0,height:wall?'auto':0}}
+                  transition={{delay:0.5,duration:0.2}}
+                  className="absolute w-96 bg-white p-4 top-21  overflow-hidden transition-all ">
+                    <ul className="flex flex-col text-left ">
+                      <li>mc2</li>
+                      <li>mc2</li>
+                      <li>mc2</li>
+                      <li>mc2</li>
+                    </ul>
+                  </motion.div>
+                </li>
+
                 <motion.li 
                 className="flex items-center gap-1"
                 onMouseOver={()=>setIshover(true)}
                 onMouseOut={()=>setIshover(false)}
-                >WPC Louver Panel <GoChevronDown size={'22px'} />
+                ><Link to={'/louvers'}> WPC Louver Panel</Link> <GoChevronDown size={'22px'} />
                   <motion.div 
                   initial={{opacity:0,height:0}}
                 animate={{opacity:ishover?1:0,height: ishover?'auto':0}}
@@ -117,7 +140,7 @@ const Header = () => {
                     <p>Charcol Panel</p>
                   </motion.div>
                 </motion.li>
-                <li>Artificial Grass</li>
+                <li><Link to={'/artificial-grass'} >Artificial Grass</Link></li>
                 <li ><Link to={'/about'} >About us</Link></li>
                 <li  ><Link to={'/contact-us'}>Contact us</Link></li>
               </ul>
@@ -154,12 +177,32 @@ const Header = () => {
           className="w-full p-2 bg-slate-600 overflow-hidden transition-all">
             <nav>
               <ul>
-                <li className="cursor-pointer bg-slate-500 rounded px-4  my-1 focus:translate-x-3 p-2 text-white font-semibold"><Link to={'/'} onClick={isopen}>Home</Link></li>
-                <li className="cursor-pointer bg-slate-500 rounded px-4  my-1 focus:translate-x-3 p-2 text-white font-semibold">Wallpaper</li>
-                <li className="cursor-pointer bg-slate-500 rounded px-4  my-1 focus:translate-x-3 p-2 text-white font-semibold">Louvers</li>
-                <li className="cursor-pointer bg-slate-500 rounded px-4  my-1 focus:translate-x-3 p-2 text-white font-semibold">Panel</li>
-                <li className="cursor-pointer bg-slate-500 rounded px-4  my-1 focus:translate-x-3 p-2 text-white font-semibold"><Link to={'/about'} onClick={isopen}>About us</Link></li>
-                <li className="cursor-pointer bg-slate-500 rounded px-4  my-1 focus:translate-x-3 p-2 text-white font-semibold"><Link to={'/contact-us'} onClick={isopen}>Contact us</Link></li>
+                 <Link to={'/'} onClick={isopen}>
+               <li className="cursor-pointer bg-slate-500 rounded px-4  my-1 focus:translate-x-3 p-2 text-white font-semibold">Home</li>
+               </Link> 
+                
+                <Link to={'/wallpaper'} onClick={isopen}>
+               <li className="cursor-pointer bg-slate-500 rounded px-4  my-1 focus:translate-x-3 p-2 text-white font-semibold">Wallpapers</li>
+               </Link>
+
+                <Link to={'/louvers'} onClick={isopen}>
+               <li className="cursor-pointer bg-slate-500 rounded px-4  my-1 focus:translate-x-3 p-2 text-white font-semibold">WPC Louvers Panel</li>
+               </Link>
+               
+
+               <Link to={'/artificial-grass'} onClick={isopen}>
+               <li className="cursor-pointer bg-slate-500 rounded px-4  my-1 focus:translate-x-3 p-2 text-white font-semibold">Artificial Grass</li>
+               </Link> 
+
+               <Link to={'/about'} onClick={isopen}>
+               <li className="cursor-pointer bg-slate-500 rounded px-4  my-1 focus:translate-x-3 p-2 text-white font-semibold">About us</li>
+               </Link> 
+
+               <Link to={'/contact-us'} onClick={isopen}>
+
+               <li className="cursor-pointer bg-slate-500 rounded px-4  my-1 focus:translate-x-3 p-2 text-white font-semibold">Contact us</li>
+               </Link> 
+               
               </ul>
 
             <motion.button 

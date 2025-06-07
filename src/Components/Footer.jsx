@@ -1,6 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { FaInstagram, FaLinkedin, FaTwitter } from 'react-icons/fa';
+import mylogo from "../assets/artregalialogo.jpg"
 
 const Footer = () => {
   return (
@@ -15,7 +16,7 @@ const Footer = () => {
         {/* Card 1: Logo + Name + Social Icons */}
         <div className="flex flex-col items-center md:items-start">
           <div className="flex items-center gap-3 mb-4">
-            <img src="https://www.shutterstock.com/image-vector/eagle-logo-fierce-vibrant-soaring-260nw-2494369867.jpg" alt="ArtRegalia Logo" className="w-10 h-10 rounded-full shadow-md" />
+            <img src={mylogo} alt="ArtRegalia Logo" className="w-10 h-10 rounded-full shadow-md" />
             <h2 className="text-2xl font-bold text-indigo-400">ArtRegalia Private Limeted</h2>
           </div>
           <p className="text-gray-300 text-sm mb-4">Crafting spaces with emotion & design</p>
